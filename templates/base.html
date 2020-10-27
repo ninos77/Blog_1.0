@@ -39,13 +39,23 @@
   {% block extra_js %}
   {% endblock %}
 
-  <!--{% include 'includes/mobile-top-header.html'%}
-  {% include 'includes/main-nav.html'%} -->
+
 
   <title>Blog AssyrianGate</title>
 </head>
 
 <body>
+
+  <!--{% include 'includes/mobile-top-header.html'%}
+  {% include 'includes/main-nav.html'%} -->
+
+  {% block page_header %}
+  {% endblock %}
+
+  {% block content %}
+  {% endblock %}
+
+
 </body>
 
 </html>
