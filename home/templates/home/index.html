@@ -70,7 +70,7 @@
               </div>
               <div class="card-caption col-12 p-0">
                 <div class="card-body">
-                  <a href="#">
+                  <a href="{% url 'blog_detail' pk=post.id slug=post.slug %}">
                     <h4>{{post.title}}</h4>
                     <p>{{post.content|truncatechars:50}}</p>
                   </a>

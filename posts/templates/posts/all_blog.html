@@ -55,7 +55,7 @@
               </div>
               <div class="card-caption col-12 p-0">
                 <div class="card-body">
-                  <a href="{% url 'blog_detail' pk=post.id%}">
+                  <a href="{% url 'blog_detail' pk=post.id slug=post.slug %}">
                     <h4>{{post.title}}</h4>
                     <p>{{post.content|truncatechars:50}}</p>
                   </a>
@@ -481,7 +481,6 @@
     </div>
   </div>
 </section>
->
 <!-- Modal [search] -->
 <div id="search" class="p-0 modal fade" role="dialog" aria-labelledby="search" aria-hidden="true">
   <div class="modal-dialog modal-dialog-slideout" role="document">

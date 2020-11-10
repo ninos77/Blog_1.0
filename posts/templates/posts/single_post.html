@@ -21,7 +21,7 @@
             <nav data-aos="zoom-out-up" data-aos-delay="800" aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Single Post</li>
+                <li class="breadcrumb-item active" aria-current="page">test</li>
               </ol>
             </nav>
 
@@ -46,15 +46,16 @@
         <div class="row intro">
           <div class="col-12">
             <span class="pre-title m-0">Technology</span>
-            <h2 class="mb-0"><span class="featured"><span>Because</span></span> market research is part of the
-              business plan.</h2>
+            <h2 class="mb-0"><span class="featured"><span>{{blog.get_first_word}}</span></span>
+              {{blog.get_rest_title}}
+            </h2>
           </div>
 
           <!-- Meta -->
           <div class="row post-meta mx-auto ml-lg-0">
             <div class="col-12 align-self-center">
-              <span class="date"><i class="fas fa-user"></i>John Doe</span>
-              <span class="author"><i class="fas fa-calendar-alt"></i>12 days ago</span>
+              <span class="date"><i class="fas fa-user"></i>{{blog.user}}</span>
+              <span class="author"><i class="fas fa-calendar-alt"></i>{{blog.publishing_date|date:'Y-m-d'}}</span>
               <span class="comment"><i class="fas fa-comment-dots"></i>35 Comments</span>
             </div>
           </div>
@@ -62,14 +63,7 @@
 
         <div class="row">
           <div class="col-12 align-self-center">
-            <p>Lorem ipsum dolor sit amet, <b>consectetur adipiscing</b> elit. Vestibulum velit tortor, interdum sed
-              cursus eu, sagittis ut nunc. Sed vitae tellus et arcu aliquet faucibus fermentum non lacus.</p>
-            <p>Praesent fringilla quis massa et placerat. Mauris eu dui eget <u>urna pellentesque</u> gravida vitae
-              quis nibh. Ut at augue tortor. Pellentesque quis suscipit magna.</p>
-            <blockquote>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quam tortor, ultrices accumsan
-              mauris eget, pulvinar tincidunt erat. Sed nisi nisi, rutrum sit amet elit.</blockquote>
-            <p>Sed et enim dolor. Integer laoreet, elit nec <a href="#">ornare rutrum</a>, massa felis molestie magna,
-              ut vehicula magna justo ac nulla. Integer luctus aliquet pulvinar.</p>
+            <p>{{blog.content}}</p>
 
             <div class="mb-5 gallery">
               <a href="https://vimeo.com/222990241"
