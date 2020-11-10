@@ -37,9 +37,9 @@ jQuery(function ($) {
 
     let preloader = $('.preloader');
 
-    setTimeout(function() {
+    setTimeout(function () {
         preloader.addClass('ready');
-        
+
     }, preloader.data('timeout'))
 })
 
@@ -68,20 +68,20 @@ jQuery(function ($) {
         navResponsive();
     })
 
-    $('.menu .dropdown-menu').each(function() {
+    $('.menu .dropdown-menu').each(function () {
         var children = $(this).children('.dropdown').length;
-        $(this).addClass('children-'+children);
+        $(this).addClass('children-' + children);
     })
 
-    
-    $('.menu .nav-item.dropdown').each(function() {
+
+    $('.menu .nav-item.dropdown').each(function () {
         var children = $(this).children('.nav-link');
         children.addClass('prevent');
     })
 
     $(document).on('click', '#menu .nav-item .nav-link', function (e) {
 
-        if($(this).hasClass('prevent')) {
+        if ($(this).hasClass('prevent')) {
             e.preventDefault();
         }
 
@@ -89,7 +89,7 @@ jQuery(function ($) {
 
         nav_link.next().toggleClass('show');
 
-        if(nav_link.hasClass('smooth-anchor')) {
+        if (nav_link.hasClass('smooth-anchor')) {
             $('#menu').modal('hide');
         }
     })
@@ -104,10 +104,10 @@ jQuery(function ($) {
     'use strict';
 
     var position = $(window).scrollTop();
-    var navbar   = $('.navbar.sub');
-    var toTop    = $('#scroll-to-top');
+    var navbar = $('.navbar.sub');
+    var toTop = $('#scroll-to-top');
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         if (position > 0) {
             navbar.addClass('navbar-sticky');
         }
@@ -128,7 +128,7 @@ jQuery(function ($) {
 
                 navbar.addClass('navbar-sticky');
 
-                if(navbar.hasClass('navbar-fixed') || window.innerWidth <= 767) {
+                if (navbar.hasClass('navbar-fixed') || window.innerWidth <= 767) {
                     navbar.removeClass('hidden').addClass('visible');
 
                 } else {
@@ -136,11 +136,11 @@ jQuery(function ($) {
                     if ($(window).scrollTop() >= window.innerHeight) {
                         navbar.removeClass('visible').addClass('hidden');
                     }
-                }                
+                }
 
                 toTop.fadeOut('fast');
 
-            // Up
+                // Up
             } else {
 
                 navbar.removeClass('hidden').addClass('visible');
@@ -149,9 +149,9 @@ jQuery(function ($) {
                 if ($(window).scrollTop() <= 100) {
                     navbar.removeClass('navbar-sticky');
 
-                } else {                   
+                } else {
 
-                    if(!navbar.hasClass('navbar-no-fixed')) {
+                    if (!navbar.hasClass('navbar-no-fixed')) {
                         navbar.addClass('visible');
                     }
                 }
@@ -167,16 +167,16 @@ jQuery(function ($) {
         }
     })
 
-    $('.nav-link').each(function() {
+    $('.nav-link').each(function () {
         let href = $(this).attr('href');
         if (href.length > 1 && href.indexOf('#') != -1) {
             $(this).addClass('smooth-anchor');
         }
     })
 
-    $('.nav-link').each(function() {
+    $('.nav-link').each(function () {
 
-        if(this.hasAttribute('href')) {
+        if (this.hasAttribute('href')) {
             let href = $(this).attr('href');
             if (href.length > 1 && href.indexOf('#') != -1) {
                 $(this).addClass('smooth-anchor');
@@ -185,11 +185,11 @@ jQuery(function ($) {
 
         let body = $('body');
 
-        if(this.hasAttribute('href') && ! body.hasClass('home')) {
+        if (this.hasAttribute('href') && !body.hasClass('home')) {
             let href = $(this).attr('href');
             if (href.length > 1 && href.indexOf('#') != -1) {
                 $(this).removeClass('smooth-anchor');
-                $(this).attr('href', '/'+href);
+                $(this).attr('href', '/' + href);
             }
         }
     })
@@ -197,11 +197,11 @@ jQuery(function ($) {
     $(document).on('click', '.smooth-anchor', function (e) {
         e.preventDefault();
 
-        let href   = $(this).attr('href');
+        let href = $(this).attr('href');
         let target = $.attr(this, 'href');
 
-        if($(target).length > 0) {
-        
+        if ($(target).length > 0) {
+
             if (href.length > 1 && href.indexOf('#') != -1) {
                 $('html, body').animate({
                     scrollTop: $(target).offset().top
@@ -225,7 +225,7 @@ jQuery(function ($) {
     let navbar_holder = $('.navbar-holder');
     let navbar_height = $('.navbar-expand.sub').outerHeight();
 
-    if(navbar_holder.length > 0) {
+    if (navbar_holder.length > 0) {
         $('.navbar-holder').css('min-height', navbar_height);
     }
 })
@@ -236,12 +236,12 @@ jQuery(function ($) {
 
 jQuery(function ($) {
 
-    setTimeout(function() {
+    setTimeout(function () {
         $('.no-slider .left').addClass('init');
         $('.no-slider .right').addClass('init');
     }, 1200)
 
-    var animation = function(slider) {
+    var animation = function (slider) {
 
         let image = $(slider + ' .swiper-slide-active img');
         let title = $(slider + ' .title');
@@ -255,7 +255,7 @@ jQuery(function ($) {
         btn.toggleClass('aos-animate');
         nav.toggleClass('aos-animate');
 
-        setTimeout(function() {
+        setTimeout(function () {
             image.toggleClass('aos-animate');
             title.toggleClass('aos-animate');
             description.toggleClass('aos-animate');
@@ -273,12 +273,12 @@ jQuery(function ($) {
             $('.full-slider .right').addClass('off');
             $('.full-slider .right').removeClass('init');
 
-            setTimeout(function() {
+            setTimeout(function () {
                 $('.full-slider .left').removeClass('off');
                 $('.full-slider .right').removeClass('off');
             }, 200)
 
-            setTimeout(function() {
+            setTimeout(function () {
                 $('.full-slider .left').addClass('init');
                 $('.full-slider .right').addClass('init');
             }, 1000)
@@ -307,22 +307,22 @@ jQuery(function ($) {
             onlyInViewport: false
         },
         on: {
-            init: function() {
+            init: function () {
                 animation('.full-slider');
                 let pagination = $('.full-slider .swiper-pagination');
                 pagination.hide();
 
-                setTimeout(function() {
+                setTimeout(function () {
                     pagination.fadeIn('slow');
                 }, 3600)
             },
-            slideChange: function() {
+            slideChange: function () {
                 animation('.full-slider');
 
                 let title = $('.full-slider .title');
                 let description = $('.full-slider .description');
                 let btn = $('.full-slider .buttons');
-                
+
                 title.attr('data-aos-delay', 400);
                 description.attr('data-aos-delay', 800);
                 btn.attr('data-aos-delay', 1200);
@@ -330,9 +330,9 @@ jQuery(function ($) {
         }
     })
 
-    $('.mid-slider').each(function() {
+    $('.mid-slider').each(function () {
 
-        if($(this).data('perview')) {
+        if ($(this).data('perview')) {
             var midPerView = $(this).data('perview');
         } else {
             midPerView = 3;
@@ -395,7 +395,7 @@ jQuery(function ($) {
         grabCursor: false,
         allowTouchMove: false,
         on: {
-            init: function() {
+            init: function () {
                 animation('.no-slider')
             }
         }
@@ -408,20 +408,20 @@ jQuery(function ($) {
 
 function particles(type, ID) {
 
-    if(type === 'default') {
-        particlesJS(ID,{particles:{number:{value:80,density:{enable:!0,value_area:800}},color:{value:"#ffffff"},shape:{type:"circle",stroke:{width:0,color:"#000000"},polygon:{nb_sides:5},image:{src:"img/github.svg",width:100,height:100}},opacity:{value:.25,random:!1,anim:{enable:!1,speed:1,opacity_min:.1,sync:!1}},size:{value:5,random:!0,anim:{enable:!1,speed:40,size_min:.1,sync:!1}},line_linked:{enable:!0,distance:150,color:"#ffffff",opacity:.25,width:1},move:{enable:!0,speed:6,direction:"none",random:!1,straight:!1,out_mode:"out",attract:{enable:!1,rotateX:600,rotateY:1200}}},interactivity:{detect_on:"canvas",events:{onhover:{enable:0,mode:"repulse"},onclick:{enable:!0,mode:"push"},resize:!0},modes:{grab:{distance:400,line_linked:{opacity:1}},bubble:{distance:400,size:40,duration:2,opacity:8,speed:3},repulse:{distance:200},push:{particles_nb:4},remove:{particles_nb:2}}},retina_detect:!0,config_demo:{hide_card:!1,background_color:"#b61924",background_image:"",background_position:"50% 50%",background_repeat:"no-repeat",background_size:"cover"}});
+    if (type === 'default') {
+        particlesJS(ID, { particles: { number: { value: 80, density: { enable: !0, value_area: 800 } }, color: { value: "#ffffff" }, shape: { type: "circle", stroke: { width: 0, color: "#000000" }, polygon: { nb_sides: 5 }, image: { src: "img/github.svg", width: 100, height: 100 } }, opacity: { value: .25, random: !1, anim: { enable: !1, speed: 1, opacity_min: .1, sync: !1 } }, size: { value: 5, random: !0, anim: { enable: !1, speed: 40, size_min: .1, sync: !1 } }, line_linked: { enable: !0, distance: 150, color: "#ffffff", opacity: .25, width: 1 }, move: { enable: !0, speed: 6, direction: "none", random: !1, straight: !1, out_mode: "out", attract: { enable: !1, rotateX: 600, rotateY: 1200 } } }, interactivity: { detect_on: "canvas", events: { onhover: { enable: 0, mode: "repulse" }, onclick: { enable: !0, mode: "push" }, resize: !0 }, modes: { grab: { distance: 400, line_linked: { opacity: 1 } }, bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 }, repulse: { distance: 200 }, push: { particles_nb: 4 }, remove: { particles_nb: 2 } } }, retina_detect: !0, config_demo: { hide_card: !1, background_color: "#b61924", background_image: "", background_position: "50% 50%", background_repeat: "no-repeat", background_size: "cover" } });
     }
 
-    if(type === 'squares') {
-        particlesJS(ID,{particles:{number:{value:20,density:{enable:!0,value_area:800}},color:{value:"#21333e"},shape:{type:"edge",stroke:{width:0,color:"#000"},image:{src:"img/github.svg",width:100,height:100}},opacity:{value:.15,random:!0,anim:{enable:!1,speed:1,opacity_min:.05,sync:!1}},size:{value:80,random:!1,anim:{enable:!0,speed:5,size_min:5,sync:!1}},line_linked:{enable:!1,distance:200,color:"#ffffff",opacity:1,width:2},move:{enable:!0,speed:5,direction:"none",random:!1,straight:!1,out_mode:"out",bounce:!1,attract:{enable:!1,rotateX:600,rotateY:1200}}},interactivity:{detect_on:"canvas",events:{onhover:{enable:!1,mode:"grab"},onclick:{enable:!1,mode:"push"},resize:!0},modes:{grab:{distance:400,line_linked:{opacity:1}},bubble:{distance:400,size:40,duration:2,opacity:8,speed:3},repulse:{distance:200,duration:.4},push:{particles_nb:4},remove:{particles_nb:2}}},retina_detect:!0})
+    if (type === 'squares') {
+        particlesJS(ID, { particles: { number: { value: 20, density: { enable: !0, value_area: 800 } }, color: { value: "#21333e" }, shape: { type: "edge", stroke: { width: 0, color: "#000" }, image: { src: "img/github.svg", width: 100, height: 100 } }, opacity: { value: .15, random: !0, anim: { enable: !1, speed: 1, opacity_min: .05, sync: !1 } }, size: { value: 80, random: !1, anim: { enable: !0, speed: 5, size_min: 5, sync: !1 } }, line_linked: { enable: !1, distance: 200, color: "#ffffff", opacity: 1, width: 2 }, move: { enable: !0, speed: 5, direction: "none", random: !1, straight: !1, out_mode: "out", bounce: !1, attract: { enable: !1, rotateX: 600, rotateY: 1200 } } }, interactivity: { detect_on: "canvas", events: { onhover: { enable: !1, mode: "grab" }, onclick: { enable: !1, mode: "push" }, resize: !0 }, modes: { grab: { distance: 400, line_linked: { opacity: 1 } }, bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 }, repulse: { distance: 200, duration: .4 }, push: { particles_nb: 4 }, remove: { particles_nb: 2 } } }, retina_detect: !0 })
     }
 
-    if(type === 'bubble') {
-        particlesJS(ID,{particles:{number:{value:6,density:{enable:!0,value_area:800}},color:{value:"#182c50"},shape:{type:"polygon",stroke:{width:0,color:"#000"},polygon:{nb_sides:6},image:{src:"img/github.svg",width:100,height:100}},opacity:{value:.3,random:!0,anim:{enable:!1,speed:1,opacity_min:.1,sync:!1}},size:{value:160,random:!1,anim:{enable:!0,speed:10,size_min:40,sync:!1}},line_linked:{enable:!1,distance:200,color:"#ffffff",opacity:1,width:2},move:{enable:!0,speed:8,direction:"none",random:!1,straight:!1,out_mode:"out",bounce:!1,attract:{enable:!1,rotateX:600,rotateY:1200}}},interactivity:{detect_on:"canvas",events:{onhover:{enable:!1,mode:"grab"},onclick:{enable:!1,mode:"push"},resize:!0},modes:{grab:{distance:400,line_linked:{opacity:1}},bubble:{distance:400,size:40,duration:2,opacity:8,speed:3},repulse:{distance:200,duration:.4},push:{particles_nb:4},remove:{particles_nb:2}}},retina_detect:!0});
+    if (type === 'bubble') {
+        particlesJS(ID, { particles: { number: { value: 6, density: { enable: !0, value_area: 800 } }, color: { value: "#182c50" }, shape: { type: "polygon", stroke: { width: 0, color: "#000" }, polygon: { nb_sides: 6 }, image: { src: "img/github.svg", width: 100, height: 100 } }, opacity: { value: .3, random: !0, anim: { enable: !1, speed: 1, opacity_min: .1, sync: !1 } }, size: { value: 160, random: !1, anim: { enable: !0, speed: 10, size_min: 40, sync: !1 } }, line_linked: { enable: !1, distance: 200, color: "#ffffff", opacity: 1, width: 2 }, move: { enable: !0, speed: 8, direction: "none", random: !1, straight: !1, out_mode: "out", bounce: !1, attract: { enable: !1, rotateX: 600, rotateY: 1200 } } }, interactivity: { detect_on: "canvas", events: { onhover: { enable: !1, mode: "grab" }, onclick: { enable: !1, mode: "push" }, resize: !0 }, modes: { grab: { distance: 400, line_linked: { opacity: 1 } }, bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 }, repulse: { distance: 200, duration: .4 }, push: { particles_nb: 4 }, remove: { particles_nb: 2 } } }, retina_detect: !0 });
     }
 
-    if(type === 'space') {
-        particlesJS(ID,{particles:{number:{value:160,density:{enable:!0,value_area:800}},color:{value:"#ffffff"},shape:{type:"circle",stroke:{width:0,color:"#000000"},polygon:{nb_sides:5},image:{src:"img/github.svg",width:100,height:100}},opacity:{value:1,random:!0,anim:{enable:!0,speed:1,opacity_min:0,sync:!1}},size:{value:3,random:!0,anim:{enable:!1,speed:4,size_min:.3,sync:!1}},line_linked:{enable:!1,distance:150,color:"#ffffff",opacity:.4,width:1},move:{enable:!0,speed:1,direction:"none",random:!0,straight:!1,out_mode:"out",bounce:!1,attract:{enable:!1,rotateX:600,rotateY:600}}},interactivity:{detect_on:"canvas",events:{onhover:{enable:!0,mode:"bubble"},onclick:{enable:!0,mode:"repulse"},resize:!0},modes:{grab:{distance:400,line_linked:{opacity:1}},bubble:{distance:250,size:0,duration:2,opacity:0,speed:3},repulse:{distance:400,duration:.4},push:{particles_nb:4},remove:{particles_nb:2}}},retina_detect:!0});
+    if (type === 'space') {
+        particlesJS(ID, { particles: { number: { value: 160, density: { enable: !0, value_area: 800 } }, color: { value: "#ffffff" }, shape: { type: "circle", stroke: { width: 0, color: "#000000" }, polygon: { nb_sides: 5 }, image: { src: "img/github.svg", width: 100, height: 100 } }, opacity: { value: 1, random: !0, anim: { enable: !0, speed: 1, opacity_min: 0, sync: !1 } }, size: { value: 3, random: !0, anim: { enable: !1, speed: 4, size_min: .3, sync: !1 } }, line_linked: { enable: !1, distance: 150, color: "#ffffff", opacity: .4, width: 1 }, move: { enable: !0, speed: 1, direction: "none", random: !0, straight: !1, out_mode: "out", bounce: !1, attract: { enable: !1, rotateX: 600, rotateY: 600 } } }, interactivity: { detect_on: "canvas", events: { onhover: { enable: !0, mode: "bubble" }, onclick: { enable: !0, mode: "repulse" }, resize: !0 }, modes: { grab: { distance: 400, line_linked: { opacity: 1 } }, bubble: { distance: 250, size: 0, duration: 2, opacity: 0, speed: 3 }, repulse: { distance: 400, duration: .4 }, push: { particles_nb: 4 }, remove: { particles_nb: 2 } } }, retina_detect: !0 });
     }
 }
 
@@ -429,64 +429,64 @@ function particles(type, ID) {
 6. Progress Bar
 ----------------------------------------------*/
 
-jQuery(function($) {
+jQuery(function ($) {
 
     'use strict';
 
     function initCounter(section, item, duration) {
 
-        $(document).one('inview', item, function(event, inview) {
+        $(document).one('inview', item, function (event, inview) {
 
-            if (inview) {            
-    
-                $(item).each(function() {
-    
+            if (inview) {
+
+                $(item).each(function () {
+
                     var percent = $(this).data('percent');
-                    var pcolor  = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color');
-                    var scolor  = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color');
-    
-                    if ( $(section).hasClass('odd')) {
+                    var pcolor = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color');
+                    var scolor = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color');
+
+                    if ($(section).hasClass('odd')) {
                         var tmode = 'rgba(255, 255, 255, 0.075)';
                     } else {
                         var tmode = 'rgba(0, 0, 0, 0.075)';
                     }
-    
-                    if ( $(section).hasClass('preloader') || $(section).hasClass('skills')) {
+
+                    if ($(section).hasClass('preloader') || $(section).hasClass('skills')) {
                         var symbol = '<i>%</i>';
                     } else {
                         var symbol = '';
                     }
 
-                    if(section == '.counter.preloader' || section == '.counter.funfacts') {
+                    if (section == '.counter.preloader' || section == '.counter.funfacts') {
                         var height = 70;
                     } else {
                         var height = 110;
                     }
-    
+
                     $(this).radialProgress({
                         value: (percent / 100),
                         size: height,
                         thickness: 10,
                         lineCap: 'butt',
                         emptyFill: tmode,
-                        animation: { 
-                            duration: duration, 
-                            easing: "radialProgressEasing" 
+                        animation: {
+                            duration: duration,
+                            easing: "radialProgressEasing"
                         },
                         fill: {
-                            gradient: [[pcolor, 0.1], [scolor, 1]], 
+                            gradient: [[pcolor, 0.1], [scolor, 1]],
                             gradientAngle: Math.PI / 4
                         }
-                    }).on('radial-animation-progress', function(event, progress) {
+                    }).on('radial-animation-progress', function (event, progress) {
                         $(this).find('span').html(Math.round(percent * progress) + symbol);
                     })
                 })
             }
         })
     }
-    
+
     let preloader = $('.preloader');
-    let preloader_timeout = ( preloader.data('timeout') - 800);
+    let preloader_timeout = (preloader.data('timeout') - 800);
 
     initCounter('.counter.preloader', '.counter.preloader .radial', preloader_timeout);
     initCounter('.counter.funfacts', '.counter.funfacts .radial', 5000);
@@ -501,26 +501,26 @@ jQuery(function ($) {
 
     'use strict';
 
-    $('.filter-section').each(function(index) {
+    $('.filter-section').each(function (index) {
 
         var count = index + 1;
 
-        $(this).find('.filter-items').removeClass('filter-items').addClass('filter-items-'+count);
-        $(this).find('.filter-item').removeClass('filter-item').addClass('filter-item-'+count);
-        $(this).find('.filter-sizer').removeClass('filter-sizer').addClass('filter-sizer-'+count);
-        $(this).find('.btn-filter-item').removeClass('btn-filter-item').addClass('btn-filter-item-'+count);
-        
+        $(this).find('.filter-items').removeClass('filter-items').addClass('filter-items-' + count);
+        $(this).find('.filter-item').removeClass('filter-item').addClass('filter-item-' + count);
+        $(this).find('.filter-sizer').removeClass('filter-sizer').addClass('filter-sizer-' + count);
+        $(this).find('.btn-filter-item').removeClass('btn-filter-item').addClass('btn-filter-item-' + count);
+
         var Shuffle = window.Shuffle;
-        var Filter  = new Shuffle(document.querySelector('.filter-items-'+count), {
-            itemSelector: '.filter-item-'+count,
-            sizer: '.filter-sizer-'+count,
+        var Filter = new Shuffle(document.querySelector('.filter-items-' + count), {
+            itemSelector: '.filter-item-' + count,
+            sizer: '.filter-sizer-' + count,
             buffer: 1,
         })
-    
-        $('.btn-filter-item-'+count).on('change', function (e) {
-    
+
+        $('.btn-filter-item-' + count).on('change', function (e) {
+
             var input = e.currentTarget;
-            
+
             if (input.checked) {
                 Filter.filter(input.value);
             }
@@ -536,11 +536,11 @@ jQuery(function ($) {
 
     'use strict';
 
-    $(document).on('click', 'a[data-target="#register"]', function() { 
+    $(document).on('click', 'a[data-target="#register"]', function () {
         $('#sign').modal('hide');
     })
 
-    $(document).on('click', 'a[data-target="#sign"]', function() { 
+    $(document).on('click', 'a[data-target="#sign"]', function () {
         $('#register').modal('hide');
     })
 
@@ -556,28 +556,28 @@ jQuery(function ($) {
 
     function sendForm(ID) {
 
-        var form  = $(ID);
-        var input = $(ID+' .form-control')
-        var btn   = $(ID+' .btn:first-child');
-        var alert = $(ID+' .form-alert');
+        var form = $(ID);
+        var input = $(ID + ' .form-control')
+        var btn = $(ID + ' .btn:first-child');
+        var alert = $(ID + ' .form-alert');
 
         alert.hide();
 
-        $(document).on('click', ID+' .btn:first-child', function() {
+        $(document).on('click', ID + ' .btn:first-child', function () {
             $(this).addClass('effect-motion-bg');
             form.submit();
         })
 
-        form.submit(function(e) {
+        form.submit(function (e) {
             e.preventDefault();
 
             if ($('input[name="reCAPTCHA"]').length) {
                 let reCAPTCHA = $('input[name="reCAPTCHA"]');
-    
-                grecaptcha.ready(function() {
-                    grecaptcha.execute(reCAPTCHA.data('key'), { action: "create_comment" }).then(function(token) { 
-                        reCAPTCHA.val(token); 
-                    }) 
+
+                grecaptcha.ready(function () {
+                    grecaptcha.execute(reCAPTCHA.data('key'), { action: "create_comment" }).then(function (token) {
+                        reCAPTCHA.val(token);
+                    })
                 })
             }
 
@@ -587,40 +587,40 @@ jQuery(function ($) {
                 type: 'POST',
                 url: url,
                 data: form.serialize(),
-                success: function(response) {                    
+                success: function (response) {
 
                     try {
                         JSON.parse(response);
                         var obj = JSON.parse(response);
 
                         if (obj.status == 'success') {
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 btn.removeClass('effect-motion-bg');
                                 input.val('').removeClass('invalid').removeClass('valid');
                                 alert.text(obj.info).removeClass('invalid').addClass('valid').fadeIn();
                             }, 1200);
 
-                        } else if(obj.status == 'invalid') {
-                            setTimeout(function() {
+                        } else if (obj.status == 'invalid') {
+                            setTimeout(function () {
                                 btn.removeClass('effect-motion-bg');
                                 alert.text(obj.info).removeClass('valid').addClass('invalid').fadeIn();
                             }, 1200);
 
-                            input.each(function() {
-                                let input_name = $(this).attr('name');                     
+                            input.each(function () {
+                                let input_name = $(this).attr('name');
 
-                                if(obj.fields[input_name] == true) {
-                                    $(ID+' .field-'+input_name).removeClass('valid').addClass('invalid'); 
-                                } else { 
-                                    $(ID+' .field-'+input_name).removeClass('invalid').addClass('valid');
+                                if (obj.fields[input_name] == true) {
+                                    $(ID + ' .field-' + input_name).removeClass('valid').addClass('invalid');
+                                } else {
+                                    $(ID + ' .field-' + input_name).removeClass('invalid').addClass('valid');
                                 }
                             })
                         } else {
                             btn.removeClass('effect-motion-bg');
                             input.val('').removeClass('invalid').removeClass('valid');
-                            alert.text(obj.info).removeClass('valid').addClass('invalid').fadeIn();                        
-                        
-                        } 
+                            alert.text(obj.info).removeClass('valid').addClass('invalid').fadeIn();
+
+                        }
 
                     } catch (e) {
                         btn.removeClass('effect-motion-bg');
@@ -646,16 +646,16 @@ jQuery(function ($) {
 
     if ($('input[name="reCAPTCHA"]').length) {
 
-     let siteKey = "6Lf-NwEVAAAAAPo_wwOYxFW18D9_EKvwxJxeyUx7"; // Put your site key here
-     
-     if(siteKey) { 
-         $('input[name="reCAPTCHA"]').attr("data-key", siteKey); 
-         grecaptcha.ready(function() { 
-             grecaptcha.execute(siteKey, { action: "create_comment" }).then(function(token) { 
-                 $('input[name="reCAPTCHA"]').val(token); 
-                }) 
-            }) 
-        } 
+        let siteKey = "6Lf-NwEVAAAAAPo_wwOYxFW18D9_EKvwxJxeyUx7"; // Put your site key here
+
+        if (siteKey) {
+            $('input[name="reCAPTCHA"]').attr("data-key", siteKey);
+            grecaptcha.ready(function () {
+                grecaptcha.execute(siteKey, { action: "create_comment" }).then(function (token) {
+                    $('input[name="reCAPTCHA"]').val(token);
+                })
+            })
+        }
     }
 })
 
@@ -669,7 +669,7 @@ jQuery(function ($) {
 
     let cookieNotice = true;
 
-    if(cookieNotice) {
+    if (cookieNotice) {
 
         // Translate
         gdprCookieNoticeLocales.en = {

@@ -3,5 +3,6 @@ from .views import *
 
 
 urlpatterns = [
-    path('', IndexView.as_view(), name='posts')
+    path('', AllBlog.as_view(), name='all_blogs')
+
 ]
