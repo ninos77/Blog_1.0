@@ -39,3 +39,19 @@ class Category_blog(ListView):
         self.category = get_object_or_404(Category, pk=self.kwargs['pk'])
         context['category'] = self.category
         return context
+
+
+class TagDetails(ListView):
+    template_name = "posts/tag_detail.html"
+    model = Post
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        self.tag = get_object_or_404(Tag, pk=self.kwargs['pk'])
+        return Post.objects.filter(tag=self.tag).order_by("id")
+
+    def get_context_data(self, **kwargs):
+        context = super(TagDetails, self).get_context_data(**kwargs)
+        self.tag = get_object_or_404(Tag, pk=self.kwargs['pk'])
+        context['tag'] = self.tag
+        return context

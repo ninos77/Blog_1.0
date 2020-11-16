@@ -35,6 +35,9 @@ class Tag(models.Model):
         self.slug = slugify(self.title)
         super(Tag, self).save(*args, **kwargs)
 
+    def blog_count(self):
+        return self.blogs.all().count()
+
 
 class Post(models.Model):
 
