@@ -1,5 +1,7 @@
 {% extends "base.html"%}
 {% load static %}
+{% load custom_tags %}
+
 
 
 {% block content %}
@@ -197,12 +199,10 @@
           <div class="col-12 align-self-center">
             <h4 class="title">Tags</h4>
             <div class="badges">
-              <span class="badge"><a href="#">Consulting</a></span>
-              <span class="badge"><a href="#">Audit</a></span>
-              <span class="badge"><a href="#">Assurance</a></span>
-              <span class="badge"><a href="#">Advisory</a></span>
-              <span class="badge"><a href="#">Financial</a></span>
-              <span class="badge"><a href="#">Capital Markets</a></span>
+              {% tags as tags %}
+              {% for tag in tags %}
+              <span class="badge"><a href="#">{{tag.title}}</a></span>
+              {% endfor %}
             </div>
           </div>
         </div>

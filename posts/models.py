@@ -24,6 +24,18 @@ class Category(models.Model):
         return self.blogs.all().count()
 
 
+class Tag(models.Model):
+    title = models.CharField(max_length=50)
+    slug = models.SlugField(editable=False)
+
+    def __str__(self):
+        return self.title
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Tag, self).save(*args, **kwargs)
+
+
 class Post(models.Model):
 
     title = models.CharField(max_length=150)
@@ -35,6 +47,7 @@ class Post(models.Model):
     category = models.ForeignKey(Category, default=1,
                                  on_delete=models.CASCADE, related_name="blogs")
     slug = models.SlugField(default="slug", editable=False)
+    tag = models.ManyToManyField(Tag, related_name="blogs", blank=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)

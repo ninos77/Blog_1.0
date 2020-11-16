@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render
-from .models import Post, Category
+from .models import Post, Category, Tag
 from django.views.generic import ListView, DetailView
 # Create your views here.
 
