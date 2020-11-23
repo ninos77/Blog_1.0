@@ -80,6 +80,7 @@
   <script src="{% static 'js/vendor/shuffle.min.js' %}"></script>
   <script src="{% static 'js/vendor/cookie-notice.min.js' %}"></script>
   <script src="{% static 'js/vendor/particles.min.js' %}"></script>
+  <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
   <script src="{% static 'js/main.js' %}"></script>
   {% endblock %}
 
@@ -89,8 +90,10 @@
 </head>
 
 <body class="home">
-
   {% include 'includes/main-nav.html'%}
+  {% include 'includes/register.html'%}
+  {% include 'includes/signup.html'%}
+
 
   {% block page_header %}
   {% endblock %}

@@ -1,6 +1,11 @@
 from django.shortcuts import get_object_or_404, render
 from .models import Post, Category, Tag
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
+from .forms import PostCreationForm
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+from django.template.defaultfilters import slugify
+from django.urls import reverse
 # Create your views here.
 
 
@@ -55,3 +60,29 @@ class TagDetails(ListView):
         self.tag = get_object_or_404(Tag, pk=self.kwargs['pk'])
         context['tag'] = self.tag
         return context
+
+
+@method_decorator(login_required(login_url='users/login'), name='dispatch')
+class PostCreateView(CreateView):
+    template_name = 'posts/create_post.html'
+    form_class = PostCreationForm
+    model = Post
+
+    def get_success_url(self):
+        return reverse('blog_detail', kwargs={'pk': self.object.pk, 'slug': self.object.slug})
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.save()
+
+        tags = self.request.POST.get('tag').split(',')
+
+        for tag in tags:
+            curent_tag = Tag.objects.filter(slug=slugify(tag))
+            if curent_tag.count() < 1:
+                create_tag = Tag.objects.create(title=tag)
+                form.instance.tag.add(create_tag)
+            else:
+                existed_tag = Tag.objects.get(slug=slugify(tag))
+                form.instance.tag.add(existed_tag)
+        return super(PostCreateView, self).form_valid(form)
