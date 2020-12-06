@@ -1,6 +1,7 @@
 {% extends "base.html"%}
 {% load static %}
 {% load custom_tags %}
+{% load crispy_forms_tags %}
 
 
 {% block content %}
@@ -22,11 +23,9 @@
             <nav data-aos="zoom-out-up" data-aos-delay="800" aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{blog.category.title}}</li>
+                <li class="breadcrumb-item active" aria-current="page">Create Post</li>
               </ol>
             </nav>
-
-            <h1 class="mb-0 title effect-static-text">Single Post</h1>
           </div>
         </div>
       </div>
@@ -46,38 +45,17 @@
         <!-- Text -->
         <div class="row intro">
           <div class="col-12">
-            <span class="pre-title m-0">{{blog.category.title}}</span>
-            <h2 class="mb-0"><span class="featured"><span>{{blog.get_first_word}}</span></span>
-              {{blog.get_rest_title}}
-            </h2>
+
+
+            {% crispy form %}
+
+
           </div>
 
-          <!-- Meta -->
-          <div class="row post-meta mx-auto ml-lg-0">
-            <div class="col-12 align-self-center">
-              <span class="date"><i class="fas fa-user"></i>{{blog.user}}</span>
-              <span class="author"><i class="fas fa-calendar-alt"></i>{{blog.publishing_date|date:'Y-m-d'}}</span>
-              <span class="comment"><i class="fas fa-comment-dots"></i>35 Comments</span>
-            </div>
-          </div>
         </div>
 
-        <div class="row">
-          <div class="mb-5 gallery">
-            <a href="#" class="square-image d-flex justify-content-center align-items-center">
-              <img src="{{blog.image.url}}" class="fit-image" alt="Introduction Video">
-            </a>
-          </div>
-          <div class="col-12 align-self-center">
-            <p>{{blog.content}}</p>
 
 
-          </div>
-          {% if request.user.is_authenticated %}
-          <a href="{% url 'post_update' blog.pk blog.slug%}" class="btn primary-button mr-3 mt-2">Update</a>
-          <a href="{% url 'post_update' blog.pk blog.slug%}" class="btn btn-danger mt-2">Delete</a>
-          {% endif %}
-        </div>
 
         <!-- Comments -->
         <div class="row">
@@ -285,69 +263,7 @@
   </div>
 </section>
 
-<!-- Result -->
-<section id="result" class="section-2 showcase blog-grid filter-section projects">
-  <div class="container">
-    <div class="row items">
-      <div class="col-12 col-md-4 pr-md-5 text">
-        <div data-aos="fade-up" class="row intro">
-          <div class="col-12 p-0">
-            <span class="pre-title m-0">Featured posts</span>
-            <h2 class="mb-3">Most<br>Viewed<br>This Month</h2>
-            <div class="row">
-              <div class="col-12 p-0 input-group">
-                <input type="text" class="form-control" placeholder="Enter Keywords">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12 p-0 input-group align-self-center">
-                <button class="btn primary-button">SEARCH</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div data-aos="fade-up" class="col-12 col-md-4 item">
-        <div class="card p-0 text-center">
-          <div class="image-over">
-            <img src="assets/images/news-1.jpg" alt="Lorem ipsum">
-          </div>
-          <div class="card-footer d-lg-flex align-items-center justify-content-center">
-            <a href="#" class="d-lg-flex align-items-center"><i class="icon-user"></i>Andrea Miller</a>
-            <a href="#" class="d-lg-flex align-items-center"><i class="icon-clock"></i>2 Days Ago</a>
-          </div>
-          <div class="card-caption col-12 p-0">
-            <div class="card-body">
-              <a href="#">
-                <h4>Increasing creativity is possible for everyone</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div data-aos="fade-up" class="col-12 col-md-4 item">
-        <div class="card p-0 text-center">
-          <div class="image-over">
-            <img src="assets/images/news-2.jpg" alt="Lorem ipsum">
-          </div>
-          <div class="card-footer d-lg-flex align-items-center justify-content-center">
-            <a href="#" class="d-lg-flex align-items-center"><i class="icon-user"></i>John Smith</a>
-            <a href="#" class="d-lg-flex align-items-center"><i class="icon-clock"></i>9 Days Ago</a>
-          </div>
-          <div class="card-caption col-12 p-0">
-            <div class="card-body">
-              <a href="#">
-                <h4>Because market research is part of the business plan</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <!-- Subscribe -->
 <section id="subscribe" class="section-3 odd subscribe">
