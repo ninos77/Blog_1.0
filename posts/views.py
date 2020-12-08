@@ -1,12 +1,13 @@
 from django.shortcuts import get_object_or_404, render
 from .models import Post, Category, Tag
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .forms import PostCreationForm, PostUpdateForm
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.template.defaultfilters import slugify
 from django.urls import reverse
 from django.http import HttpResponseRedirect
+from django.db.models import F
 # Create your views here.
 
 
@@ -29,6 +30,11 @@ class BlogDetail(DetailView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(BlogDetail, self).get_context_data(**kwargs)
         return context
+
+    def get(self, request, *args, **kwargs):
+        self.hit = Post.objects.filter(
+            id=self.kwargs['pk']).update(hit=F('hit')+1)
+        return super(BlogDetail, self).get(request, *args, **kwargs)
 
 
 class Category_blog(ListView):
@@ -120,3 +126,24 @@ class UpdatePostView(UpdateView):
         if self.object.user != request.user:
             return HttpResponseRedirect('/')
         return super(UpdatePostView, self).get(request, *args, **kwargs)
+
+
+class DeletePostView(DeleteView):
+    model = Post
+    success_url = '/'
+    template_name = "posts/delete_post.html"
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if self.object.user == request.user:
+            self.object.delete()
+            return HttpResponseRedirect('/')
+        else:
+            return HttpResponseRedirect('/')
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+
+        if self.object.user != request.user:
+            return HttpResponseRedirect('/')
+        return super(DeletePostView, self).get(request, *args, **kwargs)

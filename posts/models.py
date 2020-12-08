@@ -51,6 +51,7 @@ class Post(models.Model):
                                  on_delete=models.CASCADE, related_name="blogs")
     slug = models.SlugField(default="slug", editable=False)
     tag = models.ManyToManyField(Tag, related_name="blogs", blank=True)
+    hit = models.PositiveIntegerField(default=0)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)

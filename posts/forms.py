@@ -3,6 +3,7 @@ from django import forms
 from django.contrib.admin import widgets
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Submit
+from crispy_forms.bootstrap import StrictButton
 
 
 class PostCreationForm(forms.ModelForm):
@@ -31,7 +32,7 @@ class PostUpdateForm(forms.ModelForm):
         super(PostUpdateForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_method = 'post'
-        self.helper.field_class = 'col-12 p-0 input-group'
+        self.helper.field_class = 'col-12 p-0 input-group align-self-center'
         self.helper.layout = Layout(
             Field('title', css_class='form-control'),
             Field('category', css_class='form-control'),
@@ -42,7 +43,7 @@ class PostUpdateForm(forms.ModelForm):
 
         )
         self.helper.add_input(
-            Submit('submit', 'Update', css_class=('btn primary-button')))
+            Submit('submit', 'Update', css_class='btn primary-button'))
     tag = forms.CharField()
 
     class Meta:

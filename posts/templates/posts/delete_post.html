@@ -22,7 +22,7 @@
             <nav data-aos="zoom-out-up" data-aos-delay="800" aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Register</li>
+                <li class="breadcrumb-item active" aria-current="page">Delete Post</li>
               </ol>
             </nav>
           </div>
@@ -41,60 +41,28 @@
       <!-- Main -->
       <div class="col-12 col-lg-8 p-0 text">
 
-        <!-- Text -->
-        <div class="row intro">
-          <div class="col-12">
 
 
-            <form method="post" class="row">
+
+
+        <!-- Comments -->
+        <div class="row">
+          <div class="col-12 align-self-center">
+            <h4>Are you sure you want to delet the post</h4>
+            <form method="post">
               {% csrf_token %}
-              {% if form.errors %}
-              <div id="errors">
-                <div class="alert alert-danger" role="alert">
-                  <ul>
-                    {% for field in form %}
-                    {% if field.errors %}
-                    <li>{{field.errors|striptags}}</li>
-                    {% endif %}
-                    {% endfor %}
-                  </ul>
-                </div>
-              </div>
-              {% endif %}
-              <div class="col-12 p-0 align-self-center">
+              <fieldset>
                 <div class="row">
-                  <div class="col-12 p-0 pb-3">
-                    <h2>Register</h2>
-                  </div>
                 </div>
-                <div class="row">
-                  <div class="col-12 p-0 input-group">
-                    <input type="text" class="form-control" name="username" placeholder="Name" required>
-                  </div>
-                  <div class="col-12 p-0 input-group">
-                    <input type="email" class="form-control" name="email" placeholder="Email" required>
-                  </div>
-                  <div class="col-12 p-0 input-group">
-                    <input type="password" class="form-control" name="password1" placeholder="Password" required>
-                  </div>
-                  <div class="col-12 p-0 input-group">
-                    <input type="password" class="form-control" name="password2" placeholder="Confirm Password"
-                      required>
-                  </div>
+                <div class="col-12 input-group p-0">
+                  <button type="submit" class="send btn btn-danger">Yes</button>
+                  <a href="{% url 'blog_detail' object.pk object.slug %}" id="next-3"
+                    class="send btn primary-button ml-5">No</a>
                 </div>
-                <div class="row">
-                  <div class="col-12 p-0 input-group align-self-center">
-                    <button class="btn primary-button">REGISTER</button>
-                  </div>
-                </div>
-              </div>
+              </fieldset>
             </form>
-
-
           </div>
-
         </div>
-
 
       </div>
 

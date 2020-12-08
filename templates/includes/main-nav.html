@@ -83,11 +83,31 @@
 
       <!-- Navbar Icons -->
       <ul class="navbar-nav icons">
-        <li class="nav-item">
-          <a href="#" class="nav-link" data-toggle="modal" data-target="#sign">
-            <i class="icon-user"></i>
-          </a>
-        </li>
+        <div class="btn-group">
+          {% if user.is_authenticated %}
+          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            <i class="fas fa-user"></i>{{user.username}}
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="{% url 'create_post'%}">Add Post</a>
+            <a class="dropdown-item" href="#">Change Password</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'users:logout'%}">Logout</a>
+          </div>
+          {% else %}
+          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            <i class="fas fa-user"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="{% url 'users:register'%}">Register</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'users:login'%}">Login</a>
+          </div>
+          {% endif%}
+        </div>
       </ul>
 
       <!-- Navbar Toggle -->
@@ -100,11 +120,7 @@
       </ul>
 
       <!-- Navbar Action -->
-      <ul class="navbar-nav action">
-        <li class="nav-item ml-3">
-          <a href="{% url 'all_blogs'  %}" class="smooth-anchor btn ml-lg-auto primary-button">GET IN TOUCH</a>
-        </li>
-      </ul>
+
     </div>
   </nav>
 </header>
