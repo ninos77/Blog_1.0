@@ -29,6 +29,10 @@ class BlogDetail(DetailView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(BlogDetail, self).get_context_data(**kwargs)
+        context['prev_post'] = Post.objects.filter(
+            id__lt=self.kwargs['pk']).order_by('-pk').first()
+        context['next_post'] = Post.objects.filter(
+            id__gt=self.kwargs['pk']).order_by('pk').first()
         return context
 
     def get(self, request, *args, **kwargs):

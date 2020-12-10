@@ -62,7 +62,7 @@
             <div class="col-8 align-self-center">
               <span class="date"><i class="fas fa-user"></i>{{blog.user}}</span>
               <span class="author"><i class="fas fa-calendar-alt"></i>{{blog.publishing_date|date:'Y-m-d'}}</span>
-              <span class="comment"><i class="fas fa-comment-dots"></i>35 Comments</span>
+              <span class="comment"><i class="fas fa-comment-dots"></i>{{blog.post_count}}</span>
             </div>
           </div>
         </div>
@@ -75,8 +75,14 @@
           </div>
           <div class="col-12 align-self-center">
             <p>{{blog.content}}</p>
-
-
+            {% if prev_post %}
+            <a href="{% url 'blog_detail' prev_post.pk prev_post.slug %}" class="previous">&laquo; Previous</a>
+            {% else %}
+            {% endif %}
+            {% if next_post %}
+            <a href="{% url 'blog_detail' next_post.pk next_post.slug %}" class="next">Next &raquo;</a>
+            {% else %}
+            {% endif %}
           </div>
           {% if blog.user == request.user %}
           <a href="{% url 'post_update' blog.pk blog.slug%}" class="btn primary-button mr-3 mt-2">Update</a>
@@ -84,6 +90,7 @@
           {% endif %}
         </div>
       </div>
+
 
       <!-- Sidebar -->
       <aside class="col-12 col-lg-4 pl-lg-5 p-0 float-right sidebar">

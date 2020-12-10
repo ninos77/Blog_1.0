@@ -68,3 +68,6 @@ class Post(models.Model):
 
     def post_tag(self):
         return ','.join(str(tag) for tag in self.tag.all())
+
+    def post_count(self):
+        return Post.objects.all().count()
