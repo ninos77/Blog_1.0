@@ -15,6 +15,7 @@ class AllBlog(ListView):
     template_name = "posts/all_blog.html"
     model = Post
     context_object_name = 'posts'
+    paginate_by = 3
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -26,6 +27,7 @@ class BlogDetail(DetailView):
     template_name = "posts/single_post.html"
     model = Post
     context_object_name = 'blog'
+    paginate_by = 3
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(BlogDetail, self).get_context_data(**kwargs)
@@ -45,6 +47,7 @@ class Category_blog(ListView):
     template_name = "posts/category_blog.html"
     model = Post
     context_object_name = 'posts'
+    paginate_by = 3
 
     def get_queryset(self):
         self.category = get_object_or_404(Category, pk=self.kwargs['pk'])
@@ -61,6 +64,7 @@ class TagDetails(ListView):
     template_name = "posts/tag_detail.html"
     model = Post
     context_object_name = 'posts'
+    paginate_by = 3
 
     def get_queryset(self):
         self.tag = get_object_or_404(Tag, pk=self.kwargs['pk'])
@@ -136,6 +140,7 @@ class DeletePostView(DeleteView):
     model = Post
     success_url = '/'
     template_name = "posts/delete_post.html"
+    paginate_by = 3
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
